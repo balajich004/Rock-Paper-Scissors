@@ -12,45 +12,35 @@ function getComputerChoice(){
     return computerChoice;
 }
 
-function getHumanChoice(){
-    let HumanChoice;
-    HumanChoice=prompt("Enter your choice:");
-    return HumanChoice;
-}
-
-let humanSelection=getHumanChoice(),computerSelection=getComputerChoice();
+// function getHumanChoice(){
+//     let HumanChoice;
+//     HumanChoice=prompt("Enter your choice:");
+//     return HumanChoice;
+// }
+const result=document.querySelector(".result");
+// let humanSelection=getHumanChoice();
+let computerSelection=getComputerChoice();
 
 function playRound(humanChoice,computerChoice){
     humanChoice=humanChoice.toLowerCase();
     if(humanChoice===computerChoice)
-        console.log(`It's a tie!Your choice is ${humanChoice} and your opponents choice is ${computerChoice}`);
+        result.innerHTML=`It's a tie!Your choice is ${humanChoice} and your opponents choice is ${computerChoice}`;
     else if((humanChoice=="rock" && computerChoice=="scissors") || (humanChoice=="scissors" && computerChoice=="paper") || (humanChoice=="paper" && computerChoice=="rock")){
-        console.log(`You win!Your choice is ${humanChoice} and your opponents choice is ${computerChoice}`);
-        return "human";
+        result.innerHTML=`You win!Your choice is ${humanChoice} and your opponents choice is ${computerChoice}`;
     }
     else if((humanChoice=="scissors" && computerChoice=="rock") || (humanChoice=="paper" && computerChoice=="scissors") || (humanChoice=="rock" && computerChoice=="paper")){
-    console.log(`You lose!Your choice is ${humanChoice} and your opponents choice is ${computerChoice}`);
-    return "computer";
+    result.innerHTML=`You lose!Your choice is ${humanChoice} and your opponents choice is ${computerChoice}`;
     }
     else
-    console.log(`invalid choice 😾`);
+    result.innerHTML=`invalid choice 😾`;
 }
 
-// console.log(playRound(humanSelection,computerSelection));
-
-function playGame(){
-
-    for(let i=0;i<5;i++){
-        humanSelection=getHumanChoice(),computerSelection=getComputerChoice();
-        let dummy=playRound(humanSelection,computerSelection);
-        if(dummy==="human")
-        humanScore=humanScore+1;
-        else if(dummy==="computer")
-        computerScore=computerScore+1;
-    console.log(`Score update :
-                    Your score : ${humanScore}
-                    Opponent score : ${computerScore}`);
-    }
-}
-
-playGame();
+const playerRock=document.querySelector(".rock");
+const playerPaper=document.querySelector(".paper");
+const playerScissors=document.querySelector(".scissors");
+playerRock.addEventListener("click",()=>{
+    getComputerChoice();
+    playRound("rock",computerSelection);
+});
+playerPaper.addEventListener("click",()=>{playRound("paper",computerSelection)});
+playerScissors.addEventListener("click",()=>{playRound("scissors",computerSelection)});
