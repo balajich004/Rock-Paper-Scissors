@@ -1,4 +1,8 @@
 let humanScore=0,computerScore=0;
+const wrapper=document.querySelector(".rps-wrapper");
+const playerRock=document.querySelector(".rock");
+const playerPaper=document.querySelector(".paper");
+const playerScissors=document.querySelector(".scissors");
 
 function getComputerChoice(){
     let computerChoice;
@@ -12,35 +16,25 @@ function getComputerChoice(){
     return computerChoice;
 }
 
-// function getHumanChoice(){
-//     let HumanChoice;
-//     HumanChoice=prompt("Enter your choice:");
-//     return HumanChoice;
-// }
 const result=document.querySelector(".result");
-// let humanSelection=getHumanChoice();
 let computerSelection=getComputerChoice();
-
-function playRound(humanChoice,computerChoice){
-    humanChoice=humanChoice.toLowerCase();
-    if(humanChoice===computerChoice)
-        result.innerHTML=`It's a tie!Your choice is ${humanChoice} and your opponents choice is ${computerChoice}`;
-    else if((humanChoice=="rock" && computerChoice=="scissors") || (humanChoice=="scissors" && computerChoice=="paper") || (humanChoice=="paper" && computerChoice=="rock")){
-        result.innerHTML=`You win!Your choice is ${humanChoice} and your opponents choice is ${computerChoice}`;
-    }
-    else if((humanChoice=="scissors" && computerChoice=="rock") || (humanChoice=="paper" && computerChoice=="scissors") || (humanChoice=="rock" && computerChoice=="paper")){
-    result.innerHTML=`You lose!Your choice is ${humanChoice} and your opponents choice is ${computerChoice}`;
-    }
-    else
-    result.innerHTML=`invalid choice 😾`;
-}
-
-const playerRock=document.querySelector(".rock");
-const playerPaper=document.querySelector(".paper");
-const playerScissors=document.querySelector(".scissors");
 playerRock.addEventListener("click",()=>{
-    getComputerChoice();
     playRound("rock",computerSelection);
 });
 playerPaper.addEventListener("click",()=>{playRound("paper",computerSelection)});
 playerScissors.addEventListener("click",()=>{playRound("scissors",computerSelection)});
+const replay=document.querySelector(".replay");
+replay.addEventListener("click",()=>{
+    wrapper.innerHTML=`<button class="rock common"><img src="./images/rock-img.png" alt="rock-img"></button>
+    <button class="paper common"><img src="./images/paper-img.png" alt="paper-img"></button>
+    <button class="scissors common"><img src="./images/scissors-img.png" alt="scissors-img"></button>`;
+    result.innerHTML="";
+    const playerRock=document.querySelector(".rock");
+    const playerPaper=document.querySelector(".paper");
+    const playerScissors=document.querySelector(".scissors");
+    playerRock.addEventListener("click",()=>{
+        playRound("rock",computerSelection);
+    });
+    playerPaper.addEventListener("click",()=>{playRound("paper",computerSelection)});
+    playerScissors.addEventListener("click",()=>{playRound("scissors",computerSelection)});
+});
