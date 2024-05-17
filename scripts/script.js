@@ -29,6 +29,7 @@ replay.addEventListener("click",()=>{
     <button class="paper common"><img src="./images/paper-img.png" alt="paper-img"></button>
     <button class="scissors common"><img src="./images/scissors-img.png" alt="scissors-img"></button>`;
     result.innerHTML="";
+    computerSelection=getComputerChoice();
     const playerRock=document.querySelector(".rock");
     const playerPaper=document.querySelector(".paper");
     const playerScissors=document.querySelector(".scissors");
