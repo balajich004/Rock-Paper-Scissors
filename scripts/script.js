@@ -37,4 +37,5 @@ replay.addEventListener("click",()=>{
     });
     playerPaper.addEventListener("click",()=>{playRound("paper",computerSelection)});
     playerScissors.addEventListener("click",()=>{playRound("scissors",computerSelection)});
+    result.textContent=`Hi there your result will be displayed here once you make your choice. Enjoy the game!`;
 });
